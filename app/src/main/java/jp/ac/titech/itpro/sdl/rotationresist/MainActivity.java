@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor gyroscope;
 
     private final static float NS2S = 1.0f / 1000000000.0f;
-    private float angle = 0;
-    private float timestamp = 0;
+    private double angle = 0;
+    private long timestamp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float dt = (event.timestamp - timestamp) * NS2S;
+        final float dt = (event.timestamp - timestamp) * NS2S;
         timestamp = event.timestamp;
         float omegaZ = event.values[2];  // z-axis angular velocity (radian / sec)
 
